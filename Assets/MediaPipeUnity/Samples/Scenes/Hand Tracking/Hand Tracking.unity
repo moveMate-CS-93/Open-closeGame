@@ -548,7 +548,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601717180}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &601717182
 Camera:
   m_ObjectHideFlags: 0
@@ -1717,7 +1717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06312b1955e91f3479138c86bbc3f9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialGameSpeed: 5
+  initialGameSpeed: 3
   gameSpeedIncrease: 0.1
   scoreText: {fileID: 1779290117}
   hiscoreText: {fileID: 640060932}
