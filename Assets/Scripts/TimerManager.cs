@@ -7,6 +7,7 @@ public class TimerManager : MonoBehaviour
 
     [SerializeField] private Text timerText;
     private float elapsedTime;
+    private bool isTimerRunning = true;  // Ensure the timer starts running
 
     private void Awake()
     {
@@ -23,14 +24,23 @@ public class TimerManager : MonoBehaviour
 
     void Update()
     {
-        elapsedTime += Time.deltaTime;
-        int minutes = Mathf.FloorToInt(elapsedTime / 60);
-        int seconds = Mathf.FloorToInt(elapsedTime % 60);
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        if (isTimerRunning)
+        {
+            elapsedTime += Time.deltaTime;
+            int minutes = Mathf.FloorToInt(elapsedTime / 60);
+            int seconds = Mathf.FloorToInt(elapsedTime % 60);
+            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
     }
 
     public void RestartTimer()
     {
         elapsedTime = 0f;
+        isTimerRunning = true;  // Restart the timer
+    }
+
+    public void StopTimer()
+    {
+        isTimerRunning = false;  // Stop the timer
     }
 }
