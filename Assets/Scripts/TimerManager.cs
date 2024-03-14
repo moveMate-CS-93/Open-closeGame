@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class TimerManager : MonoBehaviour
 {
     public static TimerManager Instance { get; private set; }
+    public int ElapsedTime { get; internal set; }
 
     [SerializeField] private Text timerText;
     private float elapsedTime;
