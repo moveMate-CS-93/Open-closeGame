@@ -21,6 +21,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI getReadyText;
     [SerializeField] private Button retryButton;
 
+    [SerializeField] private Text score0Feedback;
+    [SerializeField] private Text score20Feedback;
+    [SerializeField] private Text score50Feedback;
+    [SerializeField] private Text score100Feedback;
+    [SerializeField] private Text score200Feedback;
+    [SerializeField] private Text score300Feedback;
+    [SerializeField] private Text score500Feedback;
+    [SerializeField] private Text score750Feedback;
+
     private Player player;
     private Spawner spawner;
     private bool isGameActive = false;
@@ -53,6 +62,15 @@ public class GameManager : MonoBehaviour
         retryButton.gameObject.SetActive(true);
         retryButton.interactable = true;  // Enable retry button
         gameOverText.gameObject.SetActive(false);
+
+        score0Feedback.gameObject.SetActive(true);
+        score20Feedback.gameObject.SetActive(false);
+        score50Feedback.gameObject.SetActive(false);
+        score100Feedback.gameObject.SetActive(false);
+        score200Feedback.gameObject.SetActive(false);
+        score300Feedback.gameObject.SetActive(false);
+        score500Feedback.gameObject.SetActive(false);
+        score750Feedback.gameObject.SetActive(false);
 
         // Stop the timer when the game is over
         TimerManager.Instance.StopTimer();
@@ -134,6 +152,50 @@ public class GameManager : MonoBehaviour
         gameSpeed += gameSpeedIncrease * Time.deltaTime;
         score += gameSpeed * Time.deltaTime;
         scoreText.text = Mathf.FloorToInt(score).ToString("D5");
+
+        // Check for score milestones and display feedback
+        CheckScoreMilestones();
+    }
+
+    private void CheckScoreMilestones()
+    {
+        int intScore = Mathf.FloorToInt(score);
+
+        if (intScore == 0)
+        {
+            StartCoroutine(DisplayFeedback(score0Feedback));
+        }
+        if (intScore == 50)
+        {
+            StartCoroutine(DisplayFeedback(score50Feedback));
+        }
+        else if (intScore == 100)
+        {
+            StartCoroutine(DisplayFeedback(score100Feedback));
+        }
+        else if (intScore == 200)
+        {
+            StartCoroutine(DisplayFeedback(score200Feedback));
+        }
+        else if (intScore == 300)
+        {
+            StartCoroutine(DisplayFeedback(score300Feedback));
+        }
+        else if (intScore == 500)
+        {
+            StartCoroutine(DisplayFeedback(score500Feedback));
+        }
+        else if (intScore == 750)
+        {
+            StartCoroutine(DisplayFeedback(score750Feedback));
+        }
+    }
+
+    private System.Collections.IEnumerator DisplayFeedback(Text feedbackText)
+    {
+        feedbackText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        feedbackText.gameObject.SetActive(false);
     }
 
     private void UpdateHiscore()
