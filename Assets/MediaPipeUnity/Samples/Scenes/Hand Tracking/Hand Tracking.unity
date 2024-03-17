@@ -2751,7 +2751,7 @@ MonoBehaviour:
   - prefab: {fileID: 9020847862631447337, guid: 5dccca64ef3c58f4985065fd38779786, type: 3}
     spawnChance: 0.05
   minSpawnRate: 1.25
-  maxSpawnRate: 2
+  maxSpawnRate: 1.75
 --- !u!4 &2108399848
 Transform:
   m_ObjectHideFlags: 0
